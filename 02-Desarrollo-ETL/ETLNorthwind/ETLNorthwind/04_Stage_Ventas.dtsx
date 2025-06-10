@@ -1,0 +1,2414 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/22/2025 3:36:40 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-6JH2CHB"
+  DTS:CreatorName="DESKTOP-6JH2CHB\Josh"
+  DTS:DTSID="{358EA6F0-8EF6-49FC-9103-633045660C76}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="04_Stage_Ventas"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{752A7E67-D240-4451-AA68-13A001746B46}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.Northwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{74B1A34B-18ED-4236-B372-591792336214}"
+      DTS:ObjectName="LocalHost.Northwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=Northwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-04_Stage_Ventas-{74B1A34B-18ED-4236-B372-591792336214}LocalHost.Northwind;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.stage_northwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{64025134-2C2E-4E75-8679-A85FBC877C8C}"
+      DTS:ObjectName="LocalHost.stage_northwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=stage_northwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-04_Stage_Ventas-{64025134-2C2E-4E75-8679-A85FBC877C8C}LocalHost.stage_northwind;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A73F9557-951C-4B8E-881A-59119847446A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\CONVERSION DE DATOS"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="CONVERSION DE DATOS"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\CONVERSION DE DATOS.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\CONVERSION DE DATOS.Inputs[Data Conversion Input].Columns[CustomerID]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="CustomerID"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\CONVERSION DE DATOS.Inputs[Data Conversion Input].Columns[Quantity]"
+                      cachedDataType="i2"
+                      cachedName="Quantity"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\CONVERSION DE DATOS.Inputs[Data Conversion Input].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\CONVERSION DE DATOS.Inputs[Data Conversion Input].Columns[Discount]"
+                      cachedDataType="r4"
+                      cachedName="Discount"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Discount]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Data Flow Task\CONVERSION DE DATOS.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[CustomerID_CHAR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="5"
+                      lineageId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[CustomerID_CHAR]"
+                      name="CustomerID_CHAR"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[CustomerID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[Quantity_DT]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[Quantity_DT]"
+                      name="Quantity_DT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Quantity]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[UnitPrice_Decimal]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[UnitPrice_Decimal]"
+                      name="UnitPrice_Decimal"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[UnitPrice]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[Discount_Decimal]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[Discount_Decimal]"
+                      name="Discount_Decimal"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Discount]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Data Flow Task\CONVERSION DE DATOS.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="FILTRAR VENTAS NUEVAS"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Inputs[Conditional Split Input].Columns[clienteId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="clienteId"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[clienteId]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Inputs[Conditional Split Input].Columns[empleadoCodigo]"
+                      cachedDataType="i4"
+                      cachedName="empleadoCodigo"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[empleadoCodigo]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Inputs[Conditional Split Input].Columns[productoCodigo]"
+                      cachedDataType="i4"
+                      cachedName="productoCodigo"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[productoCodigo]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Outputs[VENTAS_NUEVAS]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="VENTAS_NUEVAS"
+                  synchronousInputId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[clienteId]}) || [ISNULL](#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[empleadoCodigo]}) || [ISNULL](#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[productoCodigo]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(clienteId) || ISNULL(empleadoCodigo) || ISNULL(productoCodigo)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="LEFT JOIN ORDENES_STAGE_VENTAS"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[CustomerID]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="CustomerID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[EmployeeID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[CustomerID_CHAR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="CustomerID_CHAR"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[CustomerID_CHAR]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[OrderDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="OrderDate"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[OrderDate]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[Quantity_DT]"
+                      cachedDataType="i4"
+                      cachedName="Quantity_DT"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Quantity_DT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[UnitPrice_Decimal]"
+                      cachedDataType="numeric"
+                      cachedName="UnitPrice_Decimal"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[UnitPrice_Decimal]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[Discount_Decimal]"
+                      cachedDataType="numeric"
+                      cachedName="Discount_Decimal"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Discount_Decimal]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[Monto]"
+                      cachedDataType="r4"
+                      cachedName="Monto"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Monto]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[clienteId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="clienteId"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[clienteId]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[empleadoCodigo]"
+                      cachedDataType="i4"
+                      cachedName="empleadoCodigo"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[empleadoCodigo]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[productoCodigo]"
+                      cachedDataType="i4"
+                      cachedName="productoCodigo"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[productoCodigo]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[ventasOrder]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ventasOrder"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasOrder]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[ventasMonto]"
+                      cachedDataType="numeric"
+                      cachedName="ventasMonto"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasMonto]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[ventasUnidades]"
+                      cachedDataType="i4"
+                      cachedName="ventasUnidades"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasUnidades]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[ventasPrecioUnitario]"
+                      cachedDataType="numeric"
+                      cachedName="ventasPrecioUnitario"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasPrecioUnitario]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[ventasDescuento]"
+                      cachedDataType="numeric"
+                      cachedName="ventasDescuento"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasDescuento]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[CustomerID_CHAR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[CustomerID_CHAR]"
+                      name="CustomerID_CHAR">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[CustomerID_CHAR]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[EmployeeID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ProductID]"
+                      name="ProductID"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[OrderDate]"
+                      name="OrderDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[OrderDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[Quantity_DT]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[Quantity_DT]"
+                      name="Quantity_DT">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[Quantity_DT]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[UnitPrice_Decimal]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[UnitPrice_Decimal]"
+                      name="UnitPrice_Decimal"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[UnitPrice_Decimal]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[Discount_Decimal]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[Discount_Decimal]"
+                      name="Discount_Decimal"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[Discount_Decimal]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[Monto]"
+                      dataType="r4"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[Monto]"
+                      name="Monto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input].Columns[Monto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[clienteId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[clienteId]"
+                      name="clienteId"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[clienteId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[empleadoCodigo]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[empleadoCodigo]"
+                      name="empleadoCodigo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[empleadoCodigo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[productoCodigo]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[productoCodigo]"
+                      name="productoCodigo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[productoCodigo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ventasOrder]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ventasOrder]"
+                      name="ventasOrder">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[ventasOrder]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ventasMonto]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ventasMonto]"
+                      name="ventasMonto"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[ventasMonto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ventasUnidades]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ventasUnidades]"
+                      name="ventasUnidades">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[ventasUnidades]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ventasPrecioUnitario]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ventasPrecioUnitario]"
+                      name="ventasPrecioUnitario"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[ventasPrecioUnitario]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ventasDescuento]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ventasDescuento]"
+                      name="ventasDescuento"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input].Columns[ventasDescuento]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\NORTHEIND ORDENES"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="NORTHEIND ORDENES"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT c.CustomerID, e.EmployeeID, p.ProductID,
+o.OrderDate, (od.Quantity*od.UnitPrice*(1 - od.Discount)) as 'Monto',
+od.Quantity, od.UnitPrice, od.Discount
+FROM Northwind.dbo.Customers as c
+INNER JOIN Northwind.dbo.Orders as o
+on c.CustomerID = o.CustomerID
+INNER JOIN Northwind.DBO.Employees as e
+on e.EmployeeID = o.EmployeeID
+INNER JOIN Northwind.DBO.[Order Details] AS od
+on o.OrderID = od.OrderID
+INNER JOIN Northwind.dbo.Products as p
+on od.ProductID = p.ProductID;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\NORTHEIND ORDENES.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.Northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.Northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                      length="5"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[OrderDate]"
+                      name="OrderDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Monto]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[Monto]"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Monto]"
+                      name="Monto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Discount]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Discount]"
+                      name="Discount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                      dataType="wstr"
+                      length="5"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      name="OrderDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[Monto]"
+                      dataType="r4"
+                      name="Monto" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="i2"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                      dataType="r4"
+                      name="Discount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      name="EmployeeID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
+                      name="OrderDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[Monto]"
+                      dataType="r4"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[Monto]"
+                      name="Monto" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                      dataType="r4"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                      name="Discount" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR NORTHWIND ORDERS"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[CustomerID]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="CustomerID"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[CustomerID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[EmployeeID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[OrderDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="OrderDate"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[OrderDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[Monto]"
+                      cachedDataType="r4"
+                      cachedName="Monto"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Monto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[Quantity]"
+                      cachedDataType="i2"
+                      cachedName="Quantity"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Quantity]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[UnitPrice]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[Discount]"
+                      cachedDataType="r4"
+                      cachedName="Discount"
+                      lineageId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Discount]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[CustomerID_CHAR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="CustomerID_CHAR"
+                      lineageId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[CustomerID_CHAR]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[Quantity_DT]"
+                      cachedDataType="i4"
+                      cachedName="Quantity_DT"
+                      lineageId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[Quantity_DT]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[UnitPrice_Decimal]"
+                      cachedDataType="numeric"
+                      cachedName="UnitPrice_Decimal"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[UnitPrice_Decimal]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input].Columns[Discount_Decimal]"
+                      cachedDataType="numeric"
+                      cachedName="Discount_Decimal"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[Discount_Decimal]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[CustomerID]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[CustomerID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[EmployeeID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[ProductID]"
+                      name="ProductID"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[OrderDate]"
+                      name="OrderDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[OrderDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Monto]"
+                      dataType="r4"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Monto]"
+                      name="Monto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Monto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Quantity]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Quantity]"
+                      name="Quantity">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Quantity]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[UnitPrice]"
+                      name="UnitPrice">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[UnitPrice]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Discount]"
+                      dataType="r4"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Discount]"
+                      name="Discount">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output].Columns[Discount]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[CustomerID_CHAR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[CustomerID_CHAR]"
+                      name="CustomerID_CHAR">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[CustomerID_CHAR]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Quantity_DT]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Quantity_DT]"
+                      name="Quantity_DT">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[Quantity_DT]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[UnitPrice_Decimal]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[UnitPrice_Decimal]"
+                      name="UnitPrice_Decimal"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[UnitPrice_Decimal]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Discount_Decimal]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output].Columns[Discount_Decimal]"
+                      name="Discount_Decimal"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output].Columns[Discount_Decimal]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\ORDENAR VENTAS"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR VENTAS"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\ORDENAR VENTAS.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Inputs[Sort Input].Columns[clienteId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="clienteId"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[clienteId]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Inputs[Sort Input].Columns[empleadoCodigo]"
+                      cachedDataType="i4"
+                      cachedName="empleadoCodigo"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[empleadoCodigo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Inputs[Sort Input].Columns[productoCodigo]"
+                      cachedDataType="i4"
+                      cachedName="productoCodigo"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[productoCodigo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Inputs[Sort Input].Columns[ventasOrder]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ventasOrder"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasOrder]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Inputs[Sort Input].Columns[ventasMonto]"
+                      cachedDataType="numeric"
+                      cachedName="ventasMonto"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasMonto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Inputs[Sort Input].Columns[ventasUnidades]"
+                      cachedDataType="i4"
+                      cachedName="ventasUnidades"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasUnidades]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Inputs[Sort Input].Columns[ventasPrecioUnitario]"
+                      cachedDataType="numeric"
+                      cachedName="ventasPrecioUnitario"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasPrecioUnitario]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Inputs[Sort Input].Columns[ventasDescuento]"
+                      cachedDataType="numeric"
+                      cachedName="ventasDescuento"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasDescuento]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[clienteId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[clienteId]"
+                      name="clienteId"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[clienteId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[empleadoCodigo]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[empleadoCodigo]"
+                      name="empleadoCodigo"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[empleadoCodigo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[productoCodigo]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[productoCodigo]"
+                      name="productoCodigo"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[productoCodigo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasOrder]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasOrder]"
+                      name="ventasOrder">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasOrder]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasMonto]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasMonto]"
+                      name="ventasMonto"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasMonto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasUnidades]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasUnidades]"
+                      name="ventasUnidades">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasUnidades]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasPrecioUnitario]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasPrecioUnitario]"
+                      name="ventasPrecioUnitario"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasPrecioUnitario]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasDescuento]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output].Columns[ventasDescuento]"
+                      name="ventasDescuento"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasDescuento]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\STAGE_VENTAS"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="STAGE_VENTAS"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ventas]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\STAGE_VENTAS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.stage_northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.stage_northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[clienteId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[clienteId]"
+                      length="5"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[clienteId]"
+                      name="clienteId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[empleadoCodigo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[empleadoCodigo]"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[empleadoCodigo]"
+                      name="empleadoCodigo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[productoCodigo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[productoCodigo]"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[productoCodigo]"
+                      name="productoCodigo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasOrder]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[ventasOrder]"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasOrder]"
+                      name="ventasOrder"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasMonto]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[ventasMonto]"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasMonto]"
+                      name="ventasMonto"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasUnidades]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[ventasUnidades]"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasUnidades]"
+                      name="ventasUnidades"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasPrecioUnitario]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[ventasPrecioUnitario]"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasPrecioUnitario]"
+                      name="ventasPrecioUnitario"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasDescuento]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[ventasDescuento]"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].Columns[ventasDescuento]"
+                      name="ventasDescuento"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[clienteId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="clienteId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[empleadoCodigo]"
+                      dataType="i4"
+                      name="empleadoCodigo" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[productoCodigo]"
+                      dataType="i4"
+                      name="productoCodigo" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[ventasOrder]"
+                      dataType="dbTimeStamp"
+                      name="ventasOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[ventasMonto]"
+                      dataType="numeric"
+                      name="ventasMonto"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[ventasUnidades]"
+                      dataType="i4"
+                      name="ventasUnidades" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[ventasPrecioUnitario]"
+                      dataType="numeric"
+                      name="ventasPrecioUnitario"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output].ExternalColumns[ventasDescuento]"
+                      dataType="numeric"
+                      name="ventasDescuento"
+                      precision="15"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[clienteId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[clienteId]"
+                      name="clienteId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[empleadoCodigo]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[empleadoCodigo]"
+                      name="empleadoCodigo" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[productoCodigo]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[productoCodigo]"
+                      name="productoCodigo" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ventasOrder]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ventasOrder]"
+                      name="ventasOrder" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ventasMonto]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ventasMonto]"
+                      name="ventasMonto"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ventasUnidades]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ventasUnidades]"
+                      name="ventasUnidades" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ventasPrecioUnitario]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ventasPrecioUnitario]"
+                      name="ventasPrecioUnitario"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ventasDescuento]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ventasDescuento]"
+                      name="ventasDescuento"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\TABLA STAGE_VENTAS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="TABLA STAGE_VENTAS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ventas]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.stage_northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.stage_northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].Columns[CustomerID_CHAR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="CustomerID_CHAR"
+                      externalMetadataColumnId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[clienteId]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[CustomerID_CHAR]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].Columns[Quantity_DT]"
+                      cachedDataType="i4"
+                      cachedName="Quantity_DT"
+                      externalMetadataColumnId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[ventasUnidades]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[Quantity_DT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].Columns[UnitPrice_Decimal]"
+                      cachedDataType="numeric"
+                      cachedName="UnitPrice_Decimal"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[ventasPrecioUnitario]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[UnitPrice_Decimal]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].Columns[Discount_Decimal]"
+                      cachedDataType="numeric"
+                      cachedName="Discount_Decimal"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[ventasDescuento]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[Discount_Decimal]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].Columns[OrderDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="OrderDate"
+                      externalMetadataColumnId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[ventasOrder]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[OrderDate]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].Columns[Monto]"
+                      cachedDataType="r4"
+                      cachedName="Monto"
+                      externalMetadataColumnId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[ventasMonto]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[Monto]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[empleadoCodigo]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[EmployeeID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[productoCodigo]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output].Columns[ProductID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[clienteId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="clienteId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[empleadoCodigo]"
+                      dataType="i4"
+                      name="empleadoCodigo" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[productoCodigo]"
+                      dataType="i4"
+                      name="productoCodigo" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[ventasOrder]"
+                      dataType="dbTimeStamp"
+                      name="ventasOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[ventasMonto]"
+                      dataType="numeric"
+                      name="ventasMonto"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[ventasUnidades]"
+                      dataType="i4"
+                      name="ventasUnidades" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[ventasPrecioUnitario]"
+                      dataType="numeric"
+                      name="ventasPrecioUnitario"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input].ExternalColumns[ventasDescuento]"
+                      dataType="numeric"
+                      name="ventasDescuento"
+                      precision="15"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TABLA STAGE_VENTAS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TABLA STAGE_VENTAS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TABLA STAGE_VENTAS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Data Conversion Output]"
+              endId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Inputs[Sort Input]"
+              name="Data Conversion Output"
+              startId="Package\Data Flow Task\CONVERSION DE DATOS.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Merge Join Output]"
+              endId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\CONVERSION DE DATOS.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\NORTHEIND ORDENES.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output1]"
+              endId="Package\Data Flow Task\ORDENAR VENTAS.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\STAGE_VENTAS.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output]"
+              endId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS.Outputs[Sort Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output1]"
+              endId="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\ORDENAR VENTAS.Outputs[Sort Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[VENTAS_NUEVAS]"
+              endId="Package\Data Flow Task\TABLA STAGE_VENTAS.Inputs[OLE DB Destination Input]"
+              name="VENTAS_NUEVAS"
+              startId="Package\Data Flow Task\FILTRAR VENTAS NUEVAS.Outputs[VENTAS_NUEVAS]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Data Flow Task"
+          TopLeft="254.999988600612,37.6315785341811" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="250.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\ORDENAR NORTHWIND ORDERS"
+          TopLeft="139.999993741513,212.789471347824" />
+        <NodeLayout
+          Size="178.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\ORDENAR VENTAS"
+          TopLeft="441.249980274588,160.789471918774" />
+        <NodeLayout
+          Size="200.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\TABLA STAGE_VENTAS"
+          TopLeft="323.749985527248,490.03508342215" />
+        <NodeLayout
+          Size="198.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\NORTHEIND ORDENES"
+          TopLeft="161.874992763624,30.7894733461482" />
+        <NodeLayout
+          Size="216,42.6666666666667"
+          Id="Package\Data Flow Task\FILTRAR VENTAS NUEVAS"
+          TopLeft="312.499986030162,394.403506029869" />
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Data Flow Task\STAGE_VENTAS"
+          TopLeft="446.874980023131,25.3157891957219" />
+        <NodeLayout
+          Size="278.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\LEFT JOIN ORDENES_STAGE_VENTAS"
+          TopLeft="273.749987762422,303.105259829859" />
+        <NodeLayout
+          Size="208,42.6666666666667"
+          Id="Package\Data Flow Task\CONVERSION DE DATOS"
+          TopLeft="159.999992847443,122.47368286579" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[VENTAS_NUEVAS]"
+          TopLeft="422.291652445371,437.070172696535">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.9649107256151"
+              Start="0,0"
+              End="0,45.4649107256151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.4649107256151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-39.6456640625,17.2988616128076,79.291328125,10.8671875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output1]"
+          TopLeft="530.583313607922,203.456138585441">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-72.3888814010555,99.6491212444182"
+              Start="0,0"
+              End="-72.3888814010555,92.1491212444182">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.4481436919603" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,55.4481436919603"
+                    Point2="0,59.4481436919603"
+                    Point3="-4,59.4481436919603" />
+                  <mssgle:LineSegment
+                    End="-68.3888814010555,59.4481436919603" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-68.3888814010555,59.4481436919603"
+                    Point2="-72.3888814010555,59.4481436919603"
+                    Point3="-72.3888814010555,63.4481436919603" />
+                  <mssgle:LineSegment
+                    End="-72.3888814010555,92.1491212444182" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output]"
+          TopLeft="265.333327074846,255.456138014491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="102.638882909798,47.649121815368"
+              Start="0,0"
+              End="102.638882909798,40.149121815368">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.4262601124983" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.4262601124983"
+                    Point2="0,28.4262601124983"
+                    Point3="4,28.4262601124983" />
+                  <mssgle:LineSegment
+                    End="98.6388829097982,28.4262601124983" />
+                  <mssgle:CubicBezierSegment
+                    Point1="98.6388829097982,28.4262601124983"
+                    Point2="102.638882909798,28.4262601124983"
+                    Point3="102.638882909798,32.4262601124983" />
+                  <mssgle:LineSegment
+                    End="102.638882909798,40.149121815368" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output1]"
+          TopLeft="529.729146815526,67.9824558623886">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,92.8070160563854"
+              Start="0,0"
+              End="0,85.3070160563854">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,85.3070160563854" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="262.6041594722,73.4561400128149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.0175428529748"
+              Start="0,0"
+              End="0,41.5175428529748">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5175428529748" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Merge Join Output]"
+          TopLeft="416.791653562959,345.771926496526">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.631579533343"
+              Start="0,0"
+              End="0,41.131579533343">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.131579533343" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Data Conversion Output]"
+          TopLeft="264.666659961144,165.140349532456">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.6491218153678"
+              Start="0,0"
+              End="0,40.1491218153678">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.1491218153678" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\TABLA STAGE_VENTAS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\NORTHEIND ORDENES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\STAGE_VENTAS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

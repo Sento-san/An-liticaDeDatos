@@ -1,0 +1,1928 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/27/2025 3:39:41 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-6JH2CHB"
+  DTS:CreatorName="DESKTOP-6JH2CHB\Josh"
+  DTS:DTSID="{BA328278-04EE-4C99-9FCE-E3CEEA98069C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="02_Dim_Cliente"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{988CB67C-DF89-476B-97F5-6C762596D513}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.datamar_northwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{EE4B46B3-CA8E-4312-9F20-8F5C97A05C49}"
+      DTS:ObjectName="LocalHost.datamar_northwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=datamar_northwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{EE4B46B3-CA8E-4312-9F20-8F5C97A05C49}LocalHost.datamar_northwind;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.stage_northwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AA1D344B-5EE8-4145-894C-8BF2B231C25F}"
+      DTS:ObjectName="LocalHost.stage_northwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=stage_northwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{AA1D344B-5EE8-4145-894C-8BF2B231C25F}LocalHost.stage_northwind;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.stage_northwind 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BCEB4D96-3AAF-4C38-93EC-19FCC139F2C0}"
+      DTS:ObjectName="LocalHost.stage_northwind 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=stage_northwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{BCEB4D96-3AAF-4C38-93EC-19FCC139F2C0}LocalHost.stage_northwind 1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D60D66D0-9AFC-47E3-85E4-9E740209FC89}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[pais]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="pais"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[pais]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Pais_VARCHAR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Pais_VARCHAR]"
+                      name="Pais_VARCHAR"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[pais]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\DIM_CLIENTE"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DIM_CLIENTE"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dim_cliente]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\DIM_CLIENTE.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.datamar_northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.datamar_northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_Skey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_Skey]"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_Skey]"
+                      name="cliente_Skey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_codigoBkey]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_codigoBkey]"
+                      length="5"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_codigoBkey]"
+                      name="cliente_codigoBkey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_compania]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_compania]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_compania]"
+                      name="cliente_compania"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_ciudad]"
+                      length="15"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_ciudad]"
+                      name="cliente_ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_region]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_region]"
+                      length="25"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_region]"
+                      name="cliente_region"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_pais]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_pais]"
+                      length="15"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_pais]"
+                      name="cliente_pais"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_Skey]"
+                      dataType="i4"
+                      name="cliente_Skey" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_codigoBkey]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="cliente_codigoBkey" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_compania]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="cliente_compania" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="cliente_ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="cliente_region" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[cliente_pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="cliente_pais" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_Skey]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_Skey]"
+                      name="cliente_Skey" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_codigoBkey]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_codigoBkey]"
+                      name="cliente_codigoBkey" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_compania]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_compania]"
+                      name="cliente_compania" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_ciudad]"
+                      name="cliente_ciudad" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_region]"
+                      name="cliente_region" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[cliente_pais]"
+                      name="cliente_pais" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="FILTRAR CLIENTES NUEVOS"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Inputs[Conditional Split Input].Columns[cliente_codigoBkey]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="cliente_codigoBkey"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_codigoBkey]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Outputs[CLIENTES_NUEVOS]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="CLIENTES_NUEVOS"
+                  synchronousInputId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_codigoBkey]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(cliente_codigoBkey)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input].Columns[clienteid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="clienteid"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[clienteid]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input].Columns[compania]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="compania"
+                      lineageId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[compania]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input].Columns[ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="ciudad"
+                      lineageId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[ciudad]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input].Columns[region]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="region"
+                      lineageId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[region]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input].Columns[Pais_VARCHAR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Pais_VARCHAR"
+                      lineageId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[Pais_VARCHAR]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input].Columns[cliente_codigoBkey]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="cliente_codigoBkey"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_codigoBkey]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input].Columns[cliente_compania]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="cliente_compania"
+                      lineageId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_compania]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input].Columns[cliente_ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="cliente_ciudad"
+                      lineageId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_ciudad]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input].Columns[cliente_region]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="cliente_region"
+                      lineageId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_region]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input].Columns[cliente_pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="cliente_pais"
+                      lineageId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_pais]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[clienteid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[clienteid]"
+                      name="clienteid"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input].Columns[clienteid]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[compania]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[compania]"
+                      name="compania">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input].Columns[compania]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[ciudad]"
+                      name="ciudad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input].Columns[ciudad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[region]"
+                      name="region">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input].Columns[region]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_codigoBkey]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_codigoBkey]"
+                      name="cliente_codigoBkey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input].Columns[cliente_codigoBkey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_compania]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_compania]"
+                      name="cliente_compania">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input].Columns[cliente_compania]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_ciudad]"
+                      name="cliente_ciudad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input].Columns[cliente_ciudad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_region]"
+                      name="cliente_region">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input].Columns[cliente_region]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[cliente_pais]"
+                      name="cliente_pais">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input].Columns[cliente_pais]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[Pais_VARCHAR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[Pais_VARCHAR]"
+                      name="Pais_VARCHAR">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input].Columns[Pais_VARCHAR]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dim_cliente]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.datamar_northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.datamar_northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[clienteid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="clienteid"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cliente_codigoBkey]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[clienteid]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[compania]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="compania"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cliente_compania]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[compania]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="ciudad"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cliente_ciudad]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[ciudad]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[region]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="region"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cliente_region]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[region]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Pais_VARCHAR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Pais_VARCHAR"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cliente_pais]"
+                      lineageId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output].Columns[Pais_VARCHAR]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cliente_Skey]"
+                      dataType="i4"
+                      name="cliente_Skey" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cliente_codigoBkey]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="cliente_codigoBkey" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cliente_compania]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="cliente_compania" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cliente_ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="cliente_ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cliente_region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="cliente_region" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[cliente_pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="cliente_pais" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR DIM_CLIENTE"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Inputs[Sort Input].Columns[cliente_Skey]"
+                      cachedDataType="i4"
+                      cachedName="cliente_Skey"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_Skey]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Inputs[Sort Input].Columns[cliente_codigoBkey]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="cliente_codigoBkey"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_codigoBkey]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Inputs[Sort Input].Columns[cliente_compania]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="cliente_compania"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_compania]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Inputs[Sort Input].Columns[cliente_ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="cliente_ciudad"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_ciudad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Inputs[Sort Input].Columns[cliente_region]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="cliente_region"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_region]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Inputs[Sort Input].Columns[cliente_pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="cliente_pais"
+                      lineageId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_pais]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_Skey]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_Skey]"
+                      name="cliente_Skey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_Skey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_codigoBkey]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_codigoBkey]"
+                      name="cliente_codigoBkey"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_codigoBkey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_compania]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_compania]"
+                      name="cliente_compania">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_compania]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_ciudad]"
+                      name="cliente_ciudad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_ciudad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_region]"
+                      name="cliente_region">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_region]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output].Columns[cliente_pais]"
+                      name="cliente_pais">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output].Columns[cliente_pais]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR STAGE_CLIENTE"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Inputs[Sort Input].Columns[clienteid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="clienteid"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[clienteid]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Inputs[Sort Input].Columns[compania]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="compania"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[compania]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Inputs[Sort Input].Columns[ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="ciudad"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[ciudad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Inputs[Sort Input].Columns[region]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="region"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[region]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Inputs[Sort Input].Columns[pais]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="pais"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[pais]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Inputs[Sort Input].Columns[Pais_VARCHAR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Pais_VARCHAR"
+                      lineageId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Pais_VARCHAR]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[clienteid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[clienteid]"
+                      name="clienteid"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[clienteid]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[compania]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[compania]"
+                      name="compania">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[compania]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[ciudad]"
+                      name="ciudad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[ciudad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[region]"
+                      name="region">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[region]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[pais]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[pais]"
+                      name="pais">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[pais]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[Pais_VARCHAR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output].Columns[Pais_VARCHAR]"
+                      name="Pais_VARCHAR">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Pais_VARCHAR]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\STAGE_CLIENTE"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="STAGE_CLIENTE"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+sc.clienteid,sc.compania,sc.ciudad,
+sc.region,sc.pais 
+FROM 
+stage_northwind.dbo.clientes as sc</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\STAGE_CLIENTE.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.stage_northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.stage_northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[clienteid]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[clienteid]"
+                      length="5"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[clienteid]"
+                      name="clienteid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[compania]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[compania]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[compania]"
+                      name="compania"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
+                      length="15"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[ciudad]"
+                      name="ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[region]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[region]"
+                      length="15"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[region]"
+                      name="region"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[pais]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                      length="15"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].Columns[pais]"
+                      name="pais"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[clienteid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="clienteid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[compania]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="compania" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="region" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                      dataType="wstr"
+                      length="15"
+                      name="pais" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[clienteid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[clienteid]"
+                      name="clienteid" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[compania]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[compania]"
+                      name="compania" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[ciudad]"
+                      name="ciudad" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[region]"
+                      name="region" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[pais]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[pais]"
+                      name="pais" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[CLIENTES_NUEVOS]"
+              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="CLIENTES_NUEVOS"
+              startId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Outputs[CLIENTES_NUEVOS]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Data Conversion Output]"
+              endId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Inputs[Sort Input]"
+              name="Data Conversion Output"
+              startId="Package\Data Flow Task\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Merge Join Output]"
+              endId="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\DIM_CLIENTE.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output1]"
+              endId="Package\Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\STAGE_CLIENTE.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output]"
+              endId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\ORDENAR STAGE_CLIENTE.Outputs[Sort Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output1]"
+              endId="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\ORDENAR DIM_CLIENTE.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Data Flow Task"
+          TopLeft="178.124992037192,34.2105259401647" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\DIM_CLIENTE"
+          TopLeft="424.99998100102,6.84210518803293" />
+        <NodeLayout
+          Size="226.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\FILTRAR CLIENTES NUEVOS"
+          TopLeft="264.374988181517,378.789469634975" />
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="294.999986812473,448.017539855489" />
+        <NodeLayout
+          Size="298.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\LEFT JOIN STAGE_CLIENTE_DIM_CLIENTE"
+          TopLeft="221.249990109354,297.368417897383" />
+        <NodeLayout
+          Size="222.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\ORDENAR STAGE_CLIENTE"
+          TopLeft="100.624995501712,183.105261257233" />
+        <NodeLayout
+          Size="206.666666666667,42"
+          Id="Package\Data Flow Task\ORDENAR DIM_CLIENTE"
+          TopLeft="388.749982621521,181.736840219627" />
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\Data Conversion"
+          TopLeft="134.37499399297,95.1052621136577" />
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\STAGE_CLIENTE"
+          TopLeft="135.62499393709,10.2631577820494" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output1]"
+          TopLeft="492.083315954855,223.736840219627">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-73.0555480677226,73.6315776777565"
+              Start="0,0"
+              End="-73.0555480677226,66.1315776777565">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.9435348130128" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.9435348130128"
+                    Point2="0,43.9435348130128"
+                    Point3="-4,43.9435348130128" />
+                  <mssgle:LineSegment
+                    End="-69.0555480677226,43.9435348130128" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-69.0555480677226,43.9435348130128"
+                    Point2="-73.0555480677226,43.9435348130128"
+                    Point3="-73.0555480677226,47.9435348130128" />
+                  <mssgle:LineSegment
+                    End="-73.0555480677226,66.1315776777565" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output]"
+          TopLeft="211.958328835045,225.7719279239">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="110.180550163198,71.5964899734833"
+              Start="0,0"
+              End="110.180550163198,64.0964899734833">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.7289886875496" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.7289886875496"
+                    Point2="0,42.7289886875496"
+                    Point3="4,42.7289886875496" />
+                  <mssgle:LineSegment
+                    End="106.180550163198,42.7289886875496" />
+                  <mssgle:CubicBezierSegment
+                    Point1="106.180550163198,42.7289886875496"
+                    Point2="110.180550163198,42.7289886875496"
+                    Point3="110.180550163198,46.7289886875496" />
+                  <mssgle:LineSegment
+                    End="110.180550163198,64.0964899734833" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output1]"
+          TopLeft="216.333327298363,52.9298244487161">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.1754376649417"
+              Start="0,0"
+              End="0,34.6754376649417">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.6754376649417" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="500.333314334353,49.5087718546996">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.24999837949861,132.228068364927"
+              Start="0,0"
+              End="-8.24999837949861,124.728068364927">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.1140341824635" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,62.1140341824635"
+                    Point2="0,66.1140341824635"
+                    Point3="-4,66.1140341824635" />
+                  <mssgle:LineSegment
+                    End="-4.24999837949861,66.1140341824635" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.24999837949861,66.1140341824635"
+                    Point2="-8.24999837949861,66.1140341824635"
+                    Point3="-8.24999837949861,70.1140341824635" />
+                  <mssgle:LineSegment
+                    End="-8.24999837949861,124.728068364927" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Merge Join Output]"
+          TopLeft="374.145822478769,340.03508456405">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.7543850709254"
+              Start="0,0"
+              End="0,31.2543850709254">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.2543850709254" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Data Conversion Output]"
+          TopLeft="212.833328080674,137.771928780324">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.3333324769087"
+              Start="0,0"
+              End="0,37.8333324769087">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.8333324769087" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[CLIENTES_NUEVOS]"
+          TopLeft="380.020820830328,421.456136301642">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.5614035538467"
+              Start="0,0"
+              End="0,19.0614035538467">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.0614035538467" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-44.185,4.08734240192337,88.37,10.88671875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\DIM_CLIENTE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\STAGE_CLIENTE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

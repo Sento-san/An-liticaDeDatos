@@ -1,0 +1,491 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/23/2025 4:41:26 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-6JH2CHB"
+  DTS:CreatorName="DESKTOP-6JH2CHB\Josh"
+  DTS:DTSID="{59CA9CD8-867B-4F07-AD87-9ABFB5BDFC3E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="Limpiar_Stage"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{742368BF-601A-4F81-A64F-1CAB505ED622}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.stage_northwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{92FBE273-97BF-4AED-BF6B-6A190731503E}"
+      DTS:ObjectName="LocalHost.stage_northwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=stage_northwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Limpiar_Stage-{92FBE273-97BF-4AED-BF6B-6A190731503E}LocalHost.stage_northwind;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\LIMPIAR TIEMPO"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{788DB998-6795-4F42-A530-414060A65D5F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LIMPIAR TIEMPO"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{92FBE273-97BF-4AED-BF6B-6A190731503E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Stage_Tiempo;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LIMPIAR_CATEGORIAS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{F1CC1E12-A6E2-42FE-AE69-3984020F8170}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LIMPIAR_CATEGORIAS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{92FBE273-97BF-4AED-BF6B-6A190731503E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[Categorias];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LIMPIAR_CLIENTES"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{7D825799-9073-439B-9BAB-2BE9E2D301B7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LIMPIAR_CLIENTES"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{92FBE273-97BF-4AED-BF6B-6A190731503E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[clientes];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LIMPIAR_EMPLEADOS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{66249A5B-711A-4180-A927-D9EC984B182F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LIMPIAR_EMPLEADOS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{92FBE273-97BF-4AED-BF6B-6A190731503E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[empleados];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LIMPIAR_PRODUCTO"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{3FABF000-B939-474A-80BE-849B579E9480}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LIMPIAR_PRODUCTO"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{92FBE273-97BF-4AED-BF6B-6A190731503E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[producto];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LIMPIAR_PROVEEDOR"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{D6EBEEA8-6BF4-4948-AB78-76A271811702}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LIMPIAR_PROVEEDOR"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{92FBE273-97BF-4AED-BF6B-6A190731503E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[proveedor];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LIMPIAR_VENTAS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{4DEA5290-E2C3-4DC9-A0A1-C86ADEB17F57}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LIMPIAR_VENTAS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{92FBE273-97BF-4AED-BF6B-6A190731503E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[ventas];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\REINICIAR IDENTITY"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{3477672A-B7B5-42AA-AE6F-CB9726F7D1C5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="REINICIAR IDENTITY"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{92FBE273-97BF-4AED-BF6B-6A190731503E}"
+          SQLTask:SqlStatementSource="DBCC CHECKIDENT('Stage_Tiempo', RESEED, 0);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1E4E80C-242C-4888-99C2-4833A83353A4}"
+      DTS:From="Package\LIMPIAR_CATEGORIAS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\LIMPIAR_CLIENTES" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{E10D6BF8-CC7C-4E29-A57F-C95D7EA9AEEB}"
+      DTS:From="Package\LIMPIAR_CLIENTES"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\LIMPIAR_EMPLEADOS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{3AC00086-93C2-4883-A34E-494E349EF4C4}"
+      DTS:From="Package\LIMPIAR_EMPLEADOS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\LIMPIAR_PRODUCTO" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{4591FE09-E30E-4534-BA78-A2B0AD34ED31}"
+      DTS:From="Package\LIMPIAR_PRODUCTO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\LIMPIAR_PROVEEDOR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{42713A5E-8631-4E42-8135-C22824F481F5}"
+      DTS:From="Package\LIMPIAR_PROVEEDOR"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\LIMPIAR_VENTAS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{51C50DB2-06F9-4FE1-8C23-6B3D6BBDA889}"
+      DTS:From="Package\REINICIAR IDENTITY"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 5"
+      DTS:To="Package\LIMPIAR TIEMPO" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{D4CAD732-0C1E-4F16-8AD2-D060D318A814}"
+      DTS:From="Package\LIMPIAR TIEMPO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 6"
+      DTS:To="Package\LIMPIAR_CATEGORIAS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\LIMPIAR TIEMPO"
+          TopLeft="37.4999983236196,83.9298237350288" />
+        <NodeLayout
+          Size="198.666666666667,42.6666666666667"
+          Id="Package\LIMPIAR_CATEGORIAS"
+          TopLeft="244.999989047646,91.6842095196412" />
+        <NodeLayout
+          Size="180,42.6666666666667"
+          Id="Package\LIMPIAR_CLIENTES"
+          TopLeft="511.249977145344,142.315787911085" />
+        <NodeLayout
+          Size="194.666666666667,42.6666666666667"
+          Id="Package\LIMPIAR_EMPLEADOS"
+          TopLeft="244.999989047647,195.684208377742" />
+        <NodeLayout
+          Size="189.333333333334,42.6666666666667"
+          Id="Package\LIMPIAR_PRODUCTO"
+          TopLeft="493.749977927655,244.929821879443" />
+        <NodeLayout
+          Size="196.666666666667,42.6666666666667"
+          Id="Package\LIMPIAR_PROVEEDOR"
+          TopLeft="233.749989550561,288.73683893499" />
+        <NodeLayout
+          Size="170.666666666667,42.6666666666667"
+          Id="Package\LIMPIAR_VENTAS"
+          TopLeft="490.624978067354,346.89473303327" />
+        <NodeLayout
+          Size="185.333333333334,42.6666666666667"
+          Id="Package\REINICIAR IDENTITY"
+          TopLeft="31.8749985750766,13.6842103760658" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="443.666655714313,113.017542852975">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67.5833214310312,44.8538006136656"
+              Start="0,0"
+              End="60.0833214310312,44.8538006136656">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="35.0843304661386,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35.0843304661386,0"
+                    Point2="39.0843304661386,0"
+                    Point3="39.0843304661386,4" />
+                  <mssgle:LineSegment
+                    End="39.0843304661386,40.8538006136656" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39.0843304661386,40.8538006136656"
+                    Point2="39.0843304661386,44.8538006136656"
+                    Point3="43.0843304661386,44.8538006136656" />
+                  <mssgle:LineSegment
+                    End="60.0833214310312,44.8538006136656" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="511.249977145344,169.426899022196">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-71.5833214310311,41.8128649111013"
+              Start="0,0"
+              End="-64.0833214310311,41.8128649111013">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-31.7916607155156,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31.7916607155156,0"
+                    Point2="-35.7916607155156,0"
+                    Point3="-35.7916607155156,4" />
+                  <mssgle:LineSegment
+                    End="-35.7916607155156,37.8128649111013" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-35.7916607155156,37.8128649111013"
+                    Point2="-35.7916607155156,41.8128649111013"
+                    Point3="-39.7916607155156,41.8128649111013" />
+                  <mssgle:LineSegment
+                    End="-64.0833214310311,41.8128649111013" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="439.666655714313,222.795319488853">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54.083322213342,37.6900579461448"
+              Start="0,0"
+              End="46.583322213342,37.6900579461448">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="23.041661106671,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.041661106671,0"
+                    Point2="27.041661106671,0"
+                    Point3="27.041661106671,4" />
+                  <mssgle:LineSegment
+                    End="27.041661106671,33.6900579461448" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27.041661106671,33.6900579461448"
+                    Point2="27.041661106671,37.6900579461448"
+                    Point3="31.041661106671,37.6900579461448" />
+                  <mssgle:LineSegment
+                    End="46.583322213342,37.6900579461448" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="493.749977927655,272.040932990554">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-63.3333217104279,32.2514614999919"
+              Start="0,0"
+              End="-55.8333217104279,32.2514614999919">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-27.666660855214,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-27.666660855214,0"
+                    Point2="-31.666660855214,0"
+                    Point3="-31.666660855214,4" />
+                  <mssgle:LineSegment
+                    End="-31.666660855214,28.2514614999919" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31.666660855214,28.2514614999919"
+                    Point2="-31.666660855214,32.2514614999919"
+                    Point3="-35.666660855214,32.2514614999919" />
+                  <mssgle:LineSegment
+                    End="-55.8333217104279,32.2514614999919" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="430.416656217227,315.847950046101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="60.2083218501264,52.3801163205022"
+              Start="0,0"
+              End="52.7083218501264,52.3801163205022">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="21.3890513825834,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.3890513825834,0"
+                    Point2="25.3890513825834,0"
+                    Point3="25.3890513825834,4" />
+                  <mssgle:LineSegment
+                    End="25.3890513825834,48.3801163205022" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.3890513825834,48.3801163205022"
+                    Point2="25.3890513825834,52.3801163205022"
+                    Point3="29.3890513825834,52.3801163205022" />
+                  <mssgle:LineSegment
+                    End="52.7083218501264,52.3801163205022" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 5]"
+          TopLeft="122.687498449348,56.3508770427325">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.5789466922963"
+              Start="0,0"
+              End="0,20.0789466922963">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.0789466922963" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 6]"
+          TopLeft="204.166664990286,109.140349960668">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.8333240573602,0"
+              Start="0,0"
+              End="33.3333240573602,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="33.3333240573602,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

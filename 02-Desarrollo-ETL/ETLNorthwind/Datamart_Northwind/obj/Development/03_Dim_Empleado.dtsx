@@ -1,0 +1,1214 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/29/2025 3:32:28 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-6JH2CHB"
+  DTS:CreatorName="DESKTOP-6JH2CHB\Josh"
+  DTS:DTSID="{CF6E64A6-8FB0-4749-9E2E-C5EB23592827}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="03_Dim_Empleado"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{89B9C306-FDC3-458F-B35D-19D736C91574}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.datamar_northwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{030ACE27-A76A-49D8-AAE1-7F460A727ADB}"
+      DTS:ObjectName="LocalHost.datamar_northwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=datamar_northwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-03_Dim_Empleado-{030ACE27-A76A-49D8-AAE1-7F460A727ADB}LocalHost.datamar_northwind;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.stage_northwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AAD6BB22-4271-44D7-BAA7-F65E49AA6AF7}"
+      DTS:ObjectName="LocalHost.stage_northwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=stage_northwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-03_Dim_Empleado-{AAD6BB22-4271-44D7-BAA7-F65E49AA6AF7}LocalHost.stage_northwind;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CARGA DIM EMPLEADO"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{BAD915DE-1711-462D-9566-F60F40120C3C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CARGA DIM EMPLEADO"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DIM_EMPLEADO"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dim_empleado]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.datamar_northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.datamar_northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_Skey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[empleado_Skey]"
+                      lineageId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_Skey]"
+                      name="empleado_Skey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_codigoBkey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[empleado_codigoBkey]"
+                      lineageId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_codigoBkey]"
+                      name="empleado_codigoBkey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[empleado_NombreCompleto]"
+                      length="100"
+                      lineageId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_NombreCompleto]"
+                      name="empleado_NombreCompleto"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[empleado_Skey]"
+                      dataType="i4"
+                      name="empleado_Skey" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[empleado_codigoBkey]"
+                      dataType="i4"
+                      name="empleado_codigoBkey" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="empleado_NombreCompleto" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[empleado_Skey]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[empleado_Skey]"
+                      name="empleado_Skey" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[empleado_codigoBkey]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[empleado_codigoBkey]"
+                      name="empleado_codigoBkey" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[empleado_NombreCompleto]"
+                      name="empleado_NombreCompleto" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="FILTRAR EMPLEADOS NUEVOS"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Conditional Split Input].Columns[empleado_codigoBkey]"
+                      cachedDataType="i4"
+                      cachedName="empleado_codigoBkey"
+                      lineageId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[empleado_codigoBkey]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[EMPLEADOS_NUEVOS]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="EMPLEADOS_NUEVOS"
+                  synchronousInputId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[empleado_codigoBkey]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(empleado_codigoBkey)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Left Input].Columns[empleadoId]"
+                      cachedDataType="i4"
+                      cachedName="empleadoId"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Outputs[Sort Output].Columns[empleadoId]" />
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Left Input].Columns[NombreCompleto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="31"
+                      cachedName="NombreCompleto"
+                      lineageId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Outputs[Sort Output].Columns[NombreCompleto]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Right Input].Columns[empleado_codigoBkey]"
+                      cachedDataType="i4"
+                      cachedName="empleado_codigoBkey"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Outputs[Sort Output].Columns[empleado_codigoBkey]" />
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Right Input].Columns[empleado_NombreCompleto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="empleado_NombreCompleto"
+                      lineageId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Outputs[Sort Output].Columns[empleado_NombreCompleto]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[empleadoId]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[empleadoId]"
+                      name="empleadoId"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Left Input].Columns[empleadoId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="31"
+                      lineageId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[NombreCompleto]"
+                      name="NombreCompleto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Left Input].Columns[NombreCompleto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[empleado_codigoBkey]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[empleado_codigoBkey]"
+                      name="empleado_codigoBkey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Right Input].Columns[empleado_codigoBkey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[empleado_NombreCompleto]"
+                      name="empleado_NombreCompleto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Right Input].Columns[empleado_NombreCompleto]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA DIM EMPLEADO\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dim_empleado]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.datamar_northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.datamar_northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[empleadoId]"
+                      cachedDataType="i4"
+                      cachedName="empleadoId"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[empleado_codigoBkey]"
+                      lineageId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[empleadoId]" />
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NombreCompleto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="31"
+                      cachedName="NombreCompleto"
+                      externalMetadataColumnId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[empleado_NombreCompleto]"
+                      lineageId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output].Columns[NombreCompleto]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[empleado_Skey]"
+                      dataType="i4"
+                      name="empleado_Skey" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[empleado_codigoBkey]"
+                      dataType="i4"
+                      name="empleado_codigoBkey" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="empleado_NombreCompleto" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR DIM_EMPLEADO"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Inputs[Sort Input].Columns[empleado_Skey]"
+                      cachedDataType="i4"
+                      cachedName="empleado_Skey"
+                      lineageId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_Skey]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Inputs[Sort Input].Columns[empleado_codigoBkey]"
+                      cachedDataType="i4"
+                      cachedName="empleado_codigoBkey"
+                      lineageId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_codigoBkey]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Inputs[Sort Input].Columns[empleado_NombreCompleto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="empleado_NombreCompleto"
+                      lineageId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_NombreCompleto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Outputs[Sort Output].Columns[empleado_Skey]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Outputs[Sort Output].Columns[empleado_Skey]"
+                      name="empleado_Skey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_Skey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Outputs[Sort Output].Columns[empleado_codigoBkey]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Outputs[Sort Output].Columns[empleado_codigoBkey]"
+                      name="empleado_codigoBkey"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_codigoBkey]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Outputs[Sort Output].Columns[empleado_NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Outputs[Sort Output].Columns[empleado_NombreCompleto]"
+                      name="empleado_NombreCompleto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_NombreCompleto]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR STAGE_EMPLEADO"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Inputs[Sort Input].Columns[empleadoId]"
+                      cachedDataType="i4"
+                      cachedName="empleadoId"
+                      lineageId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleadoId]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Inputs[Sort Input].Columns[NombreCompleto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="31"
+                      cachedName="NombreCompleto"
+                      lineageId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].Columns[NombreCompleto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Outputs[Sort Output].Columns[empleadoId]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Outputs[Sort Output].Columns[empleadoId]"
+                      name="empleadoId"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleadoId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Outputs[Sort Output].Columns[NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="31"
+                      lineageId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Outputs[Sort Output].Columns[NombreCompleto]"
+                      name="NombreCompleto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].Columns[NombreCompleto]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="STAGE_EMPLEADO"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT se.empleadoId, concat(se.nombre,' ',se.apellido) as 'NombreCompleto'
+FROM stage_northwind.dbo.empleados AS se</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.stage_northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.stage_northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleadoId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[empleadoId]"
+                      lineageId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].Columns[empleadoId]"
+                      name="empleadoId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].Columns[NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[NombreCompleto]"
+                      length="31"
+                      lineageId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].Columns[NombreCompleto]"
+                      name="NombreCompleto"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[empleadoId]"
+                      dataType="i4"
+                      name="empleadoId" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="31"
+                      name="NombreCompleto" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[empleadoId]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[empleadoId]"
+                      name="empleadoId" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[NombreCompleto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="31"
+                      lineageId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[NombreCompleto]"
+                      name="NombreCompleto" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CARGA DIM EMPLEADO.Paths[EMPLEADOS_NUEVOS]"
+              endId="Package\CARGA DIM EMPLEADO\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="EMPLEADOS_NUEVOS"
+              startId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Outputs[EMPLEADOS_NUEVOS]" />
+            <path
+              refId="Package\CARGA DIM EMPLEADO.Paths[Merge Join Output]"
+              endId="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\CARGA DIM EMPLEADO.Paths[OLE DB Source Output]"
+              endId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\CARGA DIM EMPLEADO.Paths[OLE DB Source Output1]"
+              endId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\CARGA DIM EMPLEADO.Paths[Sort Output]"
+              endId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO.Outputs[Sort Output]" />
+            <path
+              refId="Package\CARGA DIM EMPLEADO.Paths[Sort Output1]"
+              endId="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="202.666666666667,42.6666666666667"
+          Id="Package\CARGA DIM EMPLEADO"
+          TopLeft="275.624987678603,43.1052626846075" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CARGA DIM EMPLEADO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="237.333333333334,42.6666666666667"
+          Id="Package\CARGA DIM EMPLEADO\ORDENAR STAGE_EMPLEADO"
+          TopLeft="100.624995501712,110.15789352733" />
+        <NodeLayout
+          Size="181.333333333334,42.6666666666667"
+          Id="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO"
+          TopLeft="128.749994244427,21.8947366017054" />
+        <NodeLayout
+          Size="220,42.6666666666667"
+          Id="Package\CARGA DIM EMPLEADO\ORDENAR DIM_EMPLEADO"
+          TopLeft="385.62498276122,108.789472489724" />
+        <NodeLayout
+          Size="241.333333333334,42.6666666666667"
+          Id="Package\CARGA DIM EMPLEADO\FILTRAR EMPLEADOS NUEVOS"
+          TopLeft="245.624989019707,275.736839077727" />
+        <NodeLayout
+          Size="174.666666666667,42"
+          Id="Package\CARGA DIM EMPLEADO\OLE DB Destination"
+          TopLeft="278.749987538904,348.947364589679" />
+        <NodeLayout
+          Size="330,42.6666666666667"
+          Id="Package\CARGA DIM EMPLEADO\LEFT JOIN STAGE_EMPLEADO _DIM_EMPLEADO"
+          TopLeft="198.124991143123,200.473682009365" />
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO"
+          TopLeft="411.874981587754,21.8947366017054" />
+        <EdgeLayout
+          Id="Package\CARGA DIM EMPLEADO.Paths[Sort Output1]"
+          TopLeft="495.62498276122,151.45613915639">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-78.8333249514306,49.0175428529745"
+              Start="0,0"
+              End="-78.8333249514306,41.5175428529745">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.268617264442" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.268617264442"
+                    Point2="0,29.268617264442"
+                    Point3="-4,29.268617264442" />
+                  <mssgle:LineSegment
+                    End="-74.8333249514306,29.268617264442" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-74.8333249514306,29.268617264442"
+                    Point2="-78.8333249514306,29.268617264442"
+                    Point3="-78.8333249514306,33.268617264442" />
+                  <mssgle:LineSegment
+                    End="-78.8333249514306,41.5175428529745" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA DIM EMPLEADO.Paths[Sort Output]"
+          TopLeft="219.291662168379,152.824560193997">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="90.166662308077,47.649121815368"
+              Start="0,0"
+              End="90.166662308077,40.149121815368">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.4515262950629" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.4515262950629"
+                    Point2="0,28.4515262950629"
+                    Point3="4,28.4515262950629" />
+                  <mssgle:LineSegment
+                    End="86.166662308077,28.4515262950629" />
+                  <mssgle:CubicBezierSegment
+                    Point1="86.166662308077,28.4515262950629"
+                    Point2="90.166662308077,28.4515262950629"
+                    Point3="90.166662308077,32.4515262950629" />
+                  <mssgle:LineSegment
+                    End="90.166662308077,40.149121815368" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA DIM EMPLEADO.Paths[OLE DB Source Output1]"
+          TopLeft="494.749982174487,64.561403268372">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.2280692213516"
+              Start="0,0"
+              End="0,36.7280692213516">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.7280692213516" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA DIM EMPLEADO.Paths[OLE DB Source Output]"
+          TopLeft="219.354161539736,64.561403268372">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.5964902589581"
+              Start="0,0"
+              End="0,38.0964902589581">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.0964902589581" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA DIM EMPLEADO.Paths[Merge Join Output]"
+          TopLeft="364.708323414748,243.140348676032">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.5964904016956"
+              Start="0,0"
+              End="0,25.0964904016956">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.0964904016956" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA DIM EMPLEADO.Paths[EMPLEADOS_NUEVOS]"
+          TopLeft="366.187488279306,318.403505744394">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.5438588452856"
+              Start="0,0"
+              End="0,23.0438588452856">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.0438588452856" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-49.39248046875,6.07857004764281,98.7849609375,10.88671875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA DIM EMPLEADO\STAGE_EMPLEADO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA DIM EMPLEADO\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA DIM EMPLEADO\DIM_EMPLEADO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
